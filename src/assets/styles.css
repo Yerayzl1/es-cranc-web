@@ -1,0 +1,85 @@
+/* ── Reset ligero ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+:root {
+  --maxw: 1180px;
+  --pad: clamp(1.25rem, 5vw, 4rem);
+  --radius: 2px;
+}
+
+/* ── Tipografía ───────────────────────────────────────────── */
+.display {
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+h1.display { font-size: clamp(2.6rem, 7vw, 5.2rem); }
+h2.display { font-size: clamp(1.9rem, 4.5vw, 3.2rem); }
+h3.display { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+.lead { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--stone); }
+
+/* ── Layout ───────────────────────────────────────────────── */
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
+.section { padding-block: clamp(4rem, 10vw, 8rem); }
+.section--tight { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* ── Botones ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn--solid { background: var(--coral); color: #fff; }
+.btn--solid:hover { background: #b93c2c; }
+.btn--ghost { border-color: currentColor; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn--ondark { border-color: rgba(255,255,255,0.5); color: #fff; }
+.btn--ondark:hover { background: #fff; color: var(--ink); }
+
+/* ── Bloques de imagen con fallback en degradado ──────────── */
+.media {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--sea) 55%, #000) 0%, var(--sea) 100%);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+}
+
+/* ── Accesibilidad ────────────────────────────────────────── */
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ── Reveal on scroll ─────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
